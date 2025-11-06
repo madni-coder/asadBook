@@ -14,17 +14,98 @@
     }
 }
 
-.overflow-x-auto::-webkit-scrollbar {
+/* Custom scrollbar styles */
+.overflow-x-auto::-webkit-scrollbar,
+.overflow-y-auto::-webkit-scrollbar {
+    width: 6px;
     height: 6px;
 }
-.overflow-x-auto::-webkit-scrollbar-track {
+
+.overflow-x-auto::-webkit-scrollbar-track,
+.overflow-y-auto::-webkit-scrollbar-track {
     background: #f1f1f1;
     border-radius: 3px;
 }
-.overflow-x-auto::-webkit-scrollbar-thumb {
+
+.overflow-x-auto::-webkit-scrollbar-thumb,
+.overflow-y-auto::-webkit-scrollbar-thumb {
     background: #c1c1c1;
     border-radius: 3px;
 }
-.overflow-x-auto::-webkit-scrollbar-thumb:hover {
+
+.overflow-x-auto::-webkit-scrollbar-thumb:hover,
+.overflow-y-auto::-webkit-scrollbar-thumb:hover {
     background: #a8a8a8;
+}
+
+/* Hide scrollbar for elements with scrollbar-hide */
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
+/* Responsive utilities */
+@layer utilities {
+    .min-w-0 {
+        min-width: 0;
+    }
+
+    /* Extra small breakpoint */
+    @media (min-width: 475px) {
+        .xs\:inline {
+            display: inline;
+        }
+    }
+}
+
+/* Context menu animation */
+.context-menu {
+    animation: fadeInScale 0.15s ease-out;
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Mobile touch improvements */
+@media (hover: none) and (pointer: coarse) {
+    .hover\:bg-base-200:hover {
+        background-color: transparent;
+    }
+
+    button:active,
+    .btn:active {
+        transform: scale(0.98);
+    }
+}
+
+/* Table cell focus improvements */
+.input:focus {
+    outline: 2px solid hsl(var(--p));
+    outline-offset: -2px;
+}
+
+/* Improved mobile table experience */
+@media (max-width: 768px) {
+    .table th,
+    .table td {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+
+    .dropdown-content {
+        right: 0;
+        left: auto;
+    }
 }
